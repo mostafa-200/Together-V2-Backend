@@ -7,7 +7,7 @@ client = MongoClient("mongodb+srv://admin:admin1234@together.cvq6ffb.mongodb.net
 db = client.seedlings
 seedlings = db.seedlings
 pollution_report = db.report
-crop = db.crop
+crops = db.crop
 flowers = db.flower
 leaves = db.leaf
 paddy = db.paddy
@@ -60,7 +60,7 @@ def addPaddyImage(i_name, Type, time, url):
 
 
 def cropRecommendation(Type, time):
-    crop.insert({
+    crops.insert({
         "prediction": Type,
         "upload_time": time
     })
