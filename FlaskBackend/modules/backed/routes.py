@@ -623,7 +623,7 @@ def report():
     location = request.json['location']
     pollutionImage = request.json['file']
     db.pollutionReport(
-        pollutionImage.filename,
+        pollutionImage,
         datetime.now(),
         location)
     return jsonify(location=location)
