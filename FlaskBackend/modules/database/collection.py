@@ -1,7 +1,9 @@
 from pymongo import MongoClient
 from bson import ObjectId
 
-client = MongoClient("mongodb://localhost:27017")
+
+client = MongoClient("mongodb+srv://admin:admin1234@together.cvq6ffb.mongodb.net/?retryWrites=true&w=majority")
+
 db = client.seedlings
 image_details = db.imageData
 
