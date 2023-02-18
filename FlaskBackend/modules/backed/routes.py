@@ -107,7 +107,7 @@ def predict_seedlings():
             elif classes_x == 11:
                 seed = "Shepherd’s Purse"
 
-            db.addNewImage(
+            db.addSeedlingImage(
                 file.filename,
                 seed,
                 datetime.now(),
@@ -156,7 +156,7 @@ def predict_flowers():
             elif classes_x == 4:
                 flower = "Rose"
 
-            db.addNewImage(
+            db.addFlowerImage(
                 file.filename,
                 flower,
                 datetime.now(),
@@ -393,7 +393,7 @@ def predict_leaves():
                 leaf = 'Viburnum x Rhytidophylloides'
             elif classes_x == 98:
                 leaf = 'Zelkova Serrata'
-            db.addNewImage(
+            db.addLeaveImage(
                 file.filename,
                 leaf,
                 datetime.now(),
@@ -452,7 +452,7 @@ def predict_paddy():
             elif classes_x == 9:
                 disease = "Tungro"
 
-            db.addNewImage(
+            db.addPaddyImage(
                 file.filename,
                 disease,
                 datetime.now(),
@@ -521,7 +521,7 @@ def predict_weeds():
             elif classes_x == 14:
                 weed = "Purslane"
 
-            db.addNewImage(
+            db.addWeedImage(
                 file.filename,
                 weed,
                 datetime.now(),
@@ -620,8 +620,8 @@ def predict_crop():
 
 @app.route('/report', methods=['POST'])
 def report():
-    pollutionImage = request.json['image']
     location = request.json['location']
+    pollutionImage = request.json['file']
     db.pollutionReport(
         pollutionImage.filename,
         datetime.now(),
