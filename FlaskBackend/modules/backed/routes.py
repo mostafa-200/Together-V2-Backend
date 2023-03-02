@@ -46,6 +46,17 @@ def read_image_seed(filename, size):
     return x
 
 
+def read_image_leave(filename, size):
+    img = load_img(filename, target_size=size, color_mode="grayscale")
+     # Preprocess the image
+    img = img.resize((192, 1))  # Resize the image to 192x1 pixels
+    img = np.asarray(img)  # Convert the image to a numpy array
+    img = img.astype('float32')  # Convert the data type to float32
+    img = (img - 127.5) / 127.5  # Normalize the image
+    x = preprocess_input(img)
+    return x
+
+
 # Allow files with extension png, jpg and jpeg
 ALLOWED_EXT = {'jpg', 'jpeg', 'png'}
 
@@ -177,8 +188,10 @@ def predict_leaves():
             filename = file.filename
             file_path = os.path.join('static/images/leaves', filename)
             file.save(file_path)
-            img_size = (224, 224)
-            img = read_image_seed(file_path, img_size)  # preprocessing method
+
+            # Reshape the image to the input shape of the model
+            input_shape = (1, 192)  # Assuming 1-dimensional input
+            img = read_image_leave(file_path, input_shape)
 
             # Load the TFLite model and allocate tensors
             interpreter = tf.lite.Interpreter(model_content=tflite_model_leaves)
