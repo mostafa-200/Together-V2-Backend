@@ -10,31 +10,31 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-tflite_model_file_seedlings = 'seedlings.tflite'
+tflite_model_file_seedlings = 'modules/backed/seedlings.tflite'
 with open(tflite_model_file_seedlings, 'rb') as fid:
     tflite_model_seedlings = fid.read()
 
-tflite_model_file_flowers = 'my_flowers.tflite'
+tflite_model_file_flowers = 'modules/backed/my_flowers.tflite'
 with open(tflite_model_file_flowers, 'rb') as fid:
     tflite_model_flowers = fid.read()
 
-tflite_model_file_leaves = 'leaf.tflite'
+tflite_model_file_leaves = 'modules/backed/leaf.tflite'
 with open(tflite_model_file_leaves, 'rb') as fid:
     tflite_model_leaves = fid.read()
 
-tflite_model_file_weed = 'my_weed.tflite'
+tflite_model_file_weed = 'modules/backed/my_weed.tflite'
 with open(tflite_model_file_weed, 'rb') as fid:
     tflite_model_weed = fid.read()
 
-tflite_model_file_paddy = 'paddy.tflite'
+tflite_model_file_paddy = 'modules/backed/paddy.tflite'
 with open(tflite_model_file_paddy, 'rb') as fid:
     tflite_model_paddy = fid.read()
 
-tflite_model_file_crop = 'crop.tflite'
+tflite_model_file_crop = 'modules/backed/crop.tflite'
 with open(tflite_model_file_crop, 'rb') as fid:
     tflite_model_crop = fid.read()
 
-target_img = os.path.join(os.getcwd(), 'static/images')
+target_img = os.path.join(os.getcwd(), 'modules/backed/static/images')
 
 
 # Function to load and prepare the image in right shape
@@ -73,7 +73,7 @@ def predict_seedlings():
         file = request.files['file']
         if file and allowed_file(file.filename):  # Checking file format
             filename = file.filename
-            file_path = os.path.join('static/images/seedlings', filename)
+            file_path = os.path.join('modules/backed/static/images/seedlings', filename)
             file.save(file_path)
             img_size = (96, 96)
             img = read_image_seed(file_path, img_size)  # preprocessing method
@@ -136,7 +136,7 @@ def predict_flowers():
         file = request.files['file']
         if file and allowed_file(file.filename):  # Checking file format
             filename = file.filename
-            file_path = os.path.join('static/images/flowers', filename)
+            file_path = os.path.join('modules/backed/static/images/flowers', filename)
             file.save(file_path)
             img_size = (224, 224)
             img = read_image_seed(file_path, img_size)  # preprocessing method
@@ -186,7 +186,7 @@ def predict_leaves():
         file = request.files['file']
         if file and allowed_file(file.filename):  # Checking file format
             filename = file.filename
-            file_path = os.path.join('static/images/leaves', filename)
+            file_path = os.path.join('modules/backed/static/images/leaves', filename)
             file.save(file_path)
 
             # Reshape the image to the input shape of the model
@@ -424,7 +424,7 @@ def predict_paddy():
         file = request.files['file']
         if file and allowed_file(file.filename):  # Checking file format
             filename = file.filename
-            file_path = os.path.join('static/images/paddy', filename)
+            file_path = os.path.join('modules/backed/static/images/paddy', filename)
             file.save(file_path)
             img_size = (256, 256)
             img = read_image_seed(file_path, img_size)  # preprocessing method
@@ -483,7 +483,7 @@ def predict_weeds():
         file = request.files['file']
         if file and allowed_file(file.filename):  # Checking file format
             filename = file.filename
-            file_path = os.path.join('static/images/weed', filename)
+            file_path = os.path.join('modules/backed/static/images/weed', filename)
             file.save(file_path)
             img_size = (224, 224)
             img = read_image_seed(file_path, img_size)  # preprocessing method
