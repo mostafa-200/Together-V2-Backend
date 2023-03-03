@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing import image
 import numpy as np
 import tensorflow as tf
 from flask import Flask, jsonify, request, render_template
-from FlaskBackend.modules.database import collection as db
+from modules.database import collection as db
 from datetime import datetime
 
 app = Flask(__name__)
